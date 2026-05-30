@@ -1,0 +1,1211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lucky Tiles — Venue Partnership</title>
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+
+<!-- Tan Headline via CDN fallback — hosted as base64 subset or use @font-face if self-hosting -->
+<!-- Since Tan Headline isn't on Google Fonts, we load it via a CDN-friendly fallback stack -->
+<!-- If you have the Tan Headline file, replace this with a proper @font-face block -->
+<style>
+@font-face {
+  font-family: 'TanHeadline';
+  /* Fallback: use a similar display serif if Tan Headline isn't available */
+  src: local('Tan Headline'), local('TanHeadline');
+  font-weight: normal;
+  font-style: normal;
+}
+
+:root {
+  --red: #FF2D37;
+  --dark-red: #CC1F28;
+  --darker-red: #A8161C;
+  --black: #111111;
+  --white: #FFFFFF;
+  --off-white: #F7F4EF;
+  --light-red: rgba(255,45,55,0.07);
+  --text: #1A1A1A;
+  --text-muted: #666666;
+  --border: rgba(0,0,0,0.08);
+}
+
+/* ── RESET ── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Work Sans', sans-serif;
+  font-weight: 400;
+  background: var(--white);
+  color: var(--text);
+  overflow-x: hidden;
+  width: 100%;
+  max-width: 100%;
+  font-size: 16px;
+  line-height: 1.6;
+}
+img { max-width: 100%; display: block; }
+a { text-decoration: none; color: inherit; }
+
+/* ── TYPOGRAPHY ── */
+h1, h2, h3, h4 {
+  font-family: 'TanHeadline', 'Didot', 'Bodoni MT', 'Playfair Display', Georgia, serif;
+  font-weight: normal;
+  line-height: 1.05;
+  letter-spacing: -0.01em;
+}
+p { font-family: 'Work Sans', sans-serif; }
+
+/* ── SECTION LABEL ── */
+.label {
+  display: inline-block;
+  font-family: 'Work Sans', sans-serif;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+}
+.label-red { color: var(--red); }
+.label-white { color: rgba(255,255,255,0.6); }
+.label-dark { color: rgba(255,255,255,0.5); }
+
+/* ── SECTION TITLE ── */
+.section-title {
+  font-size: clamp(2rem, 4.5vw, 3.2rem);
+  margin-bottom: 0.75rem;
+}
+.section-title.white { color: var(--white); }
+.section-sub {
+  font-size: 1rem;
+  font-style: italic;
+  color: var(--text-muted);
+  margin-bottom: 2.5rem;
+  font-weight: 300;
+}
+.section-sub.white { color: rgba(255,255,255,0.6); }
+
+/* ── BUTTONS ── */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.6rem;
+  font-family: 'Work Sans', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  border-radius: 100px;
+  transition: all 0.22s;
+  cursor: pointer;
+  border: 2px solid transparent;
+  white-space: nowrap;
+}
+.btn-red { background: var(--red); color: var(--white); border-color: var(--red); }
+.btn-red:hover { background: var(--dark-red); border-color: var(--dark-red); transform: translateY(-2px); }
+.btn-outline-white { background: transparent; color: var(--white); border-color: rgba(255,255,255,0.5); }
+.btn-outline-white:hover { background: rgba(255,255,255,0.12); transform: translateY(-2px); }
+.btn-outline-dark { background: transparent; color: var(--text); border-color: rgba(0,0,0,0.3); }
+.btn-outline-dark:hover { background: var(--text); color: var(--white); transform: translateY(-2px); }
+.btn-white { background: var(--white); color: var(--red); border-color: var(--white); }
+.btn-white:hover { background: var(--off-white); transform: translateY(-2px); }
+
+/* ══════════════════════════════════════════
+   HERO — RED / WHITE SPLIT
+══════════════════════════════════════════ */
+.hero {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 100svh;
+}
+.hero-left {
+  background: var(--red);
+  padding: 5rem 4rem 4rem 5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+.hero-deco-1 {
+  position: absolute; top: -70px; left: -70px;
+  width: 260px; height: 260px; border-radius: 50%;
+  background: var(--dark-red); opacity: 0.55; pointer-events: none;
+}
+.hero-deco-2 {
+  position: absolute; bottom: -50px; right: 30px;
+  width: 160px; height: 160px; border-radius: 50%;
+  background: var(--dark-red); opacity: 0.45; pointer-events: none;
+}
+.hero-eyebrow {
+  font-family: 'Work Sans', sans-serif;
+  font-size: 0.7rem; font-weight: 600;
+  letter-spacing: 0.2em; text-transform: uppercase;
+  color: rgba(255,255,255,0.55); margin-bottom: 1.4rem;
+  position: relative;
+}
+.hero-title {
+  font-family: 'TanHeadline', 'Didot', 'Bodoni MT', 'Playfair Display', Georgia, serif;
+  font-size: clamp(4rem, 7vw, 6.5rem);
+  font-weight: normal;
+  color: var(--white);
+  line-height: 0.92;
+  letter-spacing: -0.02em;
+  margin-bottom: 1rem;
+  position: relative;
+}
+.hero-sub {
+  font-size: 1rem; color: rgba(255,255,255,0.75);
+  margin-bottom: 0.35rem; position: relative;
+}
+.hero-jp {
+  font-size: 0.85rem; color: rgba(255,255,255,0.35);
+  margin-bottom: 2rem; position: relative;
+}
+.hero-rule {
+  width: 100%; height: 1px;
+  background: rgba(255,255,255,0.18);
+  margin-bottom: 1.6rem; position: relative;
+}
+.hero-proposal {
+  font-style: italic; font-size: 1rem;
+  color: var(--white); margin-bottom: 0.5rem; position: relative;
+}
+.hero-cities {
+  font-size: 0.82rem; color: rgba(255,255,255,0.45);
+  position: relative;
+}
+
+/* Nav pills — in hero right */
+.hero-right {
+  background: var(--white);
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  padding: 5rem 3.5rem 4rem;
+  gap: 2rem;
+}
+.nav-pills {
+  display: flex; flex-wrap: wrap; gap: 0.5rem;
+  justify-content: center; width: 100%;
+}
+.pill {
+  font-family: 'Work Sans', sans-serif;
+  font-size: 0.72rem; font-weight: 600;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  padding: 0.5rem 1.1rem;
+  border-radius: 100px;
+  border: 1.5px solid rgba(0,0,0,0.15);
+  color: var(--text-muted);
+  background: transparent;
+  transition: all 0.2s; cursor: pointer;
+  text-decoration: none;
+}
+.pill:hover { border-color: var(--red); color: var(--red); background: var(--light-red); }
+.pill-cta {
+  background: var(--red); color: var(--white);
+  border-color: var(--red);
+}
+.pill-cta:hover { background: var(--dark-red); border-color: var(--dark-red); color: var(--white); }
+
+.tiles-cluster {
+  display: grid;
+  grid-template-columns: repeat(3, 88px);
+  gap: 10px;
+}
+.tile {
+  width: 88px; height: 88px; border-radius: 10px;
+  border: 3px solid; display: flex;
+  align-items: center; justify-content: center;
+  font-size: 2.5rem; font-family: serif;
+  background: var(--white);
+  animation: tileFloat 4s ease-in-out infinite;
+}
+.tile:nth-child(1){ border-color: var(--red); color: var(--red); animation-delay:0s; }
+.tile:nth-child(2){ border-color: #2D8B57; color: #2D8B57; animation-delay:0.6s; }
+.tile:nth-child(3){ border-color: #999; color: #999; animation-delay:1.2s; }
+.tile:nth-child(4){ width: 186px; border-color: var(--red); color: var(--red); animation-delay:1.8s; }
+@keyframes tileFloat {
+  0%,100%{ transform: translateY(0); }
+  50%{ transform: translateY(-7px); }
+}
+.hero-tagline {
+  font-family: 'TanHeadline', 'Didot', 'Bodoni MT', 'Playfair Display', Georgia, serif;
+  font-size: 1.25rem; text-align: center;
+  color: var(--black); line-height: 1.3;
+}
+.hero-cta-row {
+  display: flex; gap: 0.75rem; flex-wrap: wrap; justify-content: center;
+}
+
+/* ══════════════════════════════════════════
+   ABOUT — WHITE
+══════════════════════════════════════════ */
+#about {
+  background: var(--white);
+  padding: 7rem 5rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5rem;
+  align-items: center;
+}
+.about-text p {
+  font-size: 1rem; color: #444;
+  line-height: 1.78; margin-bottom: 1.2rem;
+}
+.about-motto {
+  background: var(--red); color: var(--white);
+  font-family: 'TanHeadline', 'Didot', 'Bodoni MT', 'Playfair Display', Georgia, serif;
+  font-size: 1.15rem;
+  padding: 1.2rem 1.6rem;
+  margin-top: 2rem;
+}
+.pillars {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;
+}
+.pillar {
+  padding: 1.8rem;
+  display: flex; flex-direction: column;
+  align-items: center; text-align: center; gap: 0.7rem;
+  transition: transform 0.2s;
+}
+.pillar:hover { transform: translateY(-3px); }
+.pillar:nth-child(odd)  { background: var(--red); color: var(--white); }
+.pillar:nth-child(even) { background: var(--off-white); color: var(--text); }
+.pillar-icon { font-size: 1.8rem; }
+.pillar-label {
+  font-family: 'Work Sans', sans-serif;
+  font-size: 0.83rem; font-weight: 600;
+}
+
+/* ══════════════════════════════════════════
+   AUDIENCE — RED
+══════════════════════════════════════════ */
+#audience {
+  background: var(--red);
+  padding: 7rem 5rem;
+}
+.audience-grid {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 1.2rem; margin-top: 2.5rem;
+}
+.audience-card {
+  background: rgba(0,0,0,0.12);
+  border-left: 4px solid rgba(255,255,255,0.4);
+  padding: 1.8rem;
+  display: flex; gap: 1.2rem;
+  align-items: flex-start;
+  transition: background 0.2s, transform 0.2s;
+}
+.audience-card:hover { background: rgba(0,0,0,0.2); transform: translateX(4px); }
+.audience-icon {
+  width: 44px; height: 44px;
+  background: rgba(255,255,255,0.15);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.2rem; flex-shrink: 0;
+}
+.audience-card h3 {
+  font-family: 'TanHeadline', 'Didot', 'Bodoni MT', 'Playfair Display', Georgia, serif;
+  font-size: 1rem; color: var(--white);
+  margin-bottom: 0.4rem; font-weight: normal;
+}
+.audience-card p { font-size: 0.88rem; color: rgba(255,255,255,0.7); line-height: 1.6; }
+.audience-note {
+  margin-top: 1.8rem; padding: 1rem 1.4rem;
+  background: rgba(0,0,0,0.15);
+  font-size: 0.82rem; color: rgba(255,255,255,0.5);
+  font-style: italic; text-align: center;
+}
+
+/* ══════════════════════════════════════════
+   WHY MAHJONG — WHITE
+══════════════════════════════════════════ */
+#why {
+  background: var(--white);
+  padding: 7rem 5rem;
+}
+.why-grid {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 1.5rem; margin-top: 2.5rem;
+}
+.why-card {
+  background: var(--off-white);
+  padding: 2rem;
+  position: relative; overflow: hidden;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.why-card::before {
+  content: ''; position: absolute;
+  top: 0; left: 0; width: 100%; height: 4px;
+  background: var(--red);
+}
+.why-card:hover { transform: translateY(-4px); box-shadow: 0 16px 40px rgba(0,0,0,0.07); }
+.why-card-icon { font-size: 1.8rem; margin-bottom: 1rem; display: block; }
+.why-card h3 {
+  font-family: 'TanHeadline', 'Didot', 'Bodoni MT', 'Playfair Display', Georgia, serif;
+  font-size: 1.05rem; margin-bottom: 0.7rem;
+  color: var(--black); font-weight: normal;
+}
+.why-card p { font-size: 0.9rem; color: #555; line-height: 1.72; }
+
+/* ══════════════════════════════════════════
+   HANDLES EVERYTHING — RED
+══════════════════════════════════════════ */
+#handles {
+  background: var(--red);
+  padding: 7rem 5rem;
+}
+.handles-grid {
+  display: grid; grid-template-columns: 1.4fr 1fr;
+  gap: 1.5rem; margin-top: 2.5rem;
+}
+.handles-panel {
+  background: rgba(0,0,0,0.13);
+  padding: 2rem;
+}
+.handles-panel h3 {
+  font-family: 'TanHeadline', 'Didot', 'Bodoni MT', 'Playfair Display', Georgia, serif;
+  font-size: 1rem; color: var(--white); font-weight: normal;
+  margin-bottom: 1rem; padding-bottom: 0.75rem;
+  border-bottom: 1px solid rgba(255,255,255,0.15);
+}
+.handles-list { list-style: none; }
+.handles-list li {
+  display: flex; align-items: center; gap: 0.75rem;
+  padding: 0.58rem 0; font-size: 0.9rem;
+  color: rgba(255,208,208,0.9);
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  font-family: 'Work Sans', sans-serif;
+}
+.handles-list li:last-child { border-bottom: none; }
+.handles-list li::before { content: '✦'; color: rgba(255,255,255,0.35); font-size: 0.65rem; }
+.venue-panel { background: rgba(0,0,0,0.22); }
+
+/* ══════════════════════════════════════════
+   EVENT FORMATS — WHITE
+══════════════════════════════════════════ */
+#formats {
+  background: var(--white);
+  padding: 7rem 5rem;
+}
+.format-list { margin-top: 2rem; }
+.format-row {
+  display: flex; align-items: flex-start; gap: 1.4rem;
+  padding: 1.35rem 1rem;
+  border-bottom: 1px solid rgba(0,0,0,0.07);
+  transition: background 0.2s, padding-left 0.2s;
+}
+.format-row:last-child { border-bottom: none; }
+.format-row:hover { background: var(--off-white); padding-left: 1.5rem; }
+.format-icon {
+  width: 44px; height: 44px; background: var(--red); border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.1rem; flex-shrink: 0; margin-top: 2px;
+}
+.format-content { flex: 1; }
+.format-content h3 {
+  font-family: 'TanHeadline', 'Didot', 'Bodoni MT', 'Playfair Display', Georgia, serif;
+  font-size: 1.05rem; margin-bottom: 0.35rem;
+  color: var(--black); font-weight: normal;
+}
+.format-content p { font-size: 0.88rem; color: #555; line-height: 1.65; }
+.format-tag {
+  font-family: 'Work Sans', sans-serif;
+  font-size: 0.68rem; font-weight: 600;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--red); background: var(--light-red);
+  padding: 0.28rem 0.75rem; white-space: nowrap;
+  align-self: flex-start; margin-top: 4px; border-radius: 100px;
+}
+
+/* ══════════════════════════════════════════
+   IDEAL VENUES — RED
+══════════════════════════════════════════ */
+#venues {
+  background: var(--red);
+  padding: 7rem 5rem;
+}
+.venues-grid {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 1.5rem; margin-top: 2.5rem;
+}
+.venues-panel { padding: 2rem; }
+.venues-left { background: rgba(0,0,0,0.13); }
+.venues-right { background: rgba(0,0,0,0.22); }
+.venues-panel-title {
+  font-family: 'TanHeadline', 'Didot', 'Bodoni MT', 'Playfair Display', Georgia, serif;
+  font-size: 1rem; color: var(--white); font-weight: normal;
+  margin-bottom: 1rem; padding-bottom: 0.75rem;
+  border-bottom: 1px solid rgba(255,255,255,0.15);
+}
+.venue-check-list { list-style: none; }
+.venue-check-list li {
+  display: flex; gap: 0.75rem; align-items: flex-start;
+  padding: 0.55rem 0; font-size: 0.9rem; color: rgba(255,208,208,0.95);
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+  font-family: 'Work Sans', sans-serif;
+}
+.venue-check-list li:last-child { border-bottom: none; }
+.venue-check-list li .chk { color: rgba(255,255,255,0.6); font-size: 0.85rem; margin-top:2px; }
+.venue-type-list { list-style: none; }
+.venue-type-list li {
+  display: flex; gap: 0.75rem; align-items: center;
+  padding: 0.55rem 0; font-size: 0.9rem;
+  color: rgba(255,208,208,0.95);
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+  font-family: 'Work Sans', sans-serif;
+}
+.venue-type-list li:last-child { border-bottom: none; }
+.venue-type-list li::before { content: '✦'; font-size: 0.65rem; opacity: 0.55; }
+
+/* ══════════════════════════════════════════
+   SOCIAL PROOF — WHITE
+══════════════════════════════════════════ */
+#proof {
+  background: var(--white);
+  padding: 7rem 5rem;
+}
+.stats-row {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  gap: 1rem; margin: 2.5rem 0;
+}
+.stat-box {
+  padding: 2rem 1.5rem; text-align: center;
+  background: var(--off-white);
+  transition: transform 0.2s;
+}
+.stat-box:hover { transform: translateY(-3px); }
+.stat-box.highlight { background: var(--red); }
+.stat-num {
+  font-family: 'TanHeadline', 'Didot', 'Bodoni MT', 'Playfair Display', Georgia, serif;
+  font-size: 3rem; font-weight: normal;
+  color: var(--text); line-height: 1; margin-bottom: 0.5rem;
+}
+.stat-box.highlight .stat-num { color: var(--white); }
+.stat-label { font-size: 0.82rem; color: var(--text-muted); font-weight: 500; }
+.stat-box.highlight .stat-label { color: rgba(255,200,200,0.85); }
+.partners-title {
+  font-family: 'TanHeadline', 'Didot', 'Bodoni MT', 'Playfair Display', Georgia, serif;
+  font-size: 1.3rem; color: var(--black); font-weight: normal;
+  margin-bottom: 1.2rem;
+}
+.partners-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 0.6rem;
+}
+.partner-item {
+  display: flex; align-items: center; gap: 0.75rem;
+  padding: 0.9rem 1.2rem;
+  background: var(--off-white);
+  font-size: 0.9rem; color: var(--text);
+  transition: background 0.2s, transform 0.2s;
+  font-family: 'Work Sans', sans-serif;
+}
+.partner-item:hover { background: var(--light-red); color: var(--red); transform: translateX(4px); }
+.partner-item::before { content: '✦'; color: var(--red); font-size: 0.65rem; }
+.proof-note {
+  margin-top: 1.5rem; padding: 1rem 1.4rem;
+  background: var(--off-white);
+  font-size: 0.85rem; color: var(--text-muted);
+  font-style: italic; text-align: center;
+}
+
+/* ══════════════════════════════════════════
+   MARKETING — RED
+══════════════════════════════════════════ */
+#marketing {
+  background: var(--red);
+  padding: 7rem 5rem;
+}
+.marketing-grid {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 1rem; margin-top: 2.5rem;
+}
+.marketing-card {
+  background: rgba(0,0,0,0.12);
+  padding: 1.8rem;
+  display: flex; gap: 1.1rem;
+  align-items: flex-start;
+  transition: background 0.2s, transform 0.2s;
+}
+.marketing-card:hover { background: rgba(0,0,0,0.2); transform: translateX(4px); }
+.marketing-icon {
+  width: 40px; height: 40px;
+  background: rgba(255,255,255,0.18); border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1rem; flex-shrink: 0; margin-top: 2px;
+}
+.marketing-card h3 {
+  font-family: 'TanHeadline', 'Didot', 'Bodoni MT', 'Playfair Display', Georgia, serif;
+  font-size: 0.95rem; color: var(--white); font-weight: normal;
+  margin-bottom: 0.4rem;
+}
+.marketing-card p { font-size: 0.86rem; color: rgba(255,208,208,0.85); line-height: 1.65; }
+
+/* ══════════════════════════════════════════
+   PARTNERSHIP MODELS — WHITE
+══════════════════════════════════════════ */
+#models {
+  background: var(--white);
+  padding: 7rem 5rem;
+}
+.models-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 1.2rem; margin-top: 2.5rem;
+}
+.model-card {
+  display: flex; flex-direction: column;
+  border: 1.5px solid rgba(0,0,0,0.08);
+  transition: transform 0.2s, box-shadow 0.2s;
+  overflow: hidden;
+}
+.model-card:hover { transform: translateY(-5px); box-shadow: 0 20px 50px rgba(0,0,0,0.08); }
+.model-card.featured {
+  border-color: var(--red);
+  box-shadow: 0 0 0 1px var(--red);
+}
+.model-tag {
+  padding: 0.6rem;
+  text-align: center;
+  font-family: 'Work Sans', sans-serif;
+  font-size: 0.68rem; font-weight: 600;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  background: var(--off-white); color: var(--text-muted);
+}
+.model-card.featured .model-tag { background: var(--red); color: var(--white); }
+.model-body { padding: 1.8rem; flex: 1; }
+.model-body h3 {
+  font-family: 'TanHeadline', 'Didot', 'Bodoni MT', 'Playfair Display', Georgia, serif;
+  font-size: 1.25rem; color: var(--black); font-weight: normal;
+  margin-bottom: 1.2rem; padding-bottom: 0.8rem;
+  border-bottom: 1px solid rgba(0,0,0,0.08);
+}
+.model-card.featured .model-body h3 { color: var(--red); }
+.model-list { list-style: none; }
+.model-list li {
+  display: flex; gap: 0.6rem; align-items: flex-start;
+  padding: 0.5rem 0; font-size: 0.88rem; color: #555;
+  border-bottom: 1px solid rgba(0,0,0,0.05);
+  font-family: 'Work Sans', sans-serif;
+}
+.model-list li:last-child { border-bottom: none; }
+.model-list li::before { content: '✦'; color: var(--red); font-size: 0.6rem; margin-top: 4px; flex-shrink: 0; }
+
+/* ══════════════════════════════════════════
+   SUCCESS — RED
+══════════════════════════════════════════ */
+#success {
+  background: var(--red);
+  padding: 7rem 5rem;
+}
+.steps { margin-top: 2.5rem; }
+.step {
+  display: flex; gap: 1.8rem; align-items: flex-start;
+  padding: 1.4rem 1.2rem;
+  background: rgba(0,0,0,0.1);
+  margin-bottom: 0.75rem;
+  transition: background 0.2s, transform 0.2s;
+}
+.step:hover { background: rgba(0,0,0,0.18); transform: translateX(5px); }
+.step-num {
+  width: 42px; height: 42px; border-radius: 50%;
+  background: rgba(255,255,255,0.2);
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'TanHeadline', 'Didot', 'Bodoni MT', 'Playfair Display', Georgia, serif;
+  font-size: 1rem; color: var(--white); flex-shrink: 0;
+}
+.step h3 {
+  font-family: 'TanHeadline', 'Didot', 'Bodoni MT', 'Playfair Display', Georgia, serif;
+  font-size: 1.05rem; margin-bottom: 0.3rem;
+  color: var(--white); font-weight: normal;
+}
+.step p { font-size: 0.88rem; color: rgba(255,208,208,0.85); line-height: 1.65; }
+
+/* ══════════════════════════════════════════
+   CONTACT / CTA — WHITE
+══════════════════════════════════════════ */
+#contact {
+  background: var(--white);
+  display: grid; grid-template-columns: 1fr 1fr;
+}
+.cta-left {
+  background: var(--red);
+  padding: 6rem 4rem;
+  display: flex; flex-direction: column; justify-content: center;
+  position: relative; overflow: hidden;
+}
+.cta-deco-1 {
+  position: absolute; bottom: -80px; left: -60px;
+  width: 280px; height: 280px; border-radius: 50%;
+  background: var(--dark-red); pointer-events: none;
+}
+.cta-deco-2 {
+  position: absolute; top: -40px; right: 20px;
+  width: 150px; height: 150px; border-radius: 50%;
+  background: var(--dark-red); opacity: 0.6; pointer-events: none;
+}
+.cta-left h2 {
+  font-family: 'TanHeadline', 'Didot', 'Bodoni MT', 'Playfair Display', Georgia, serif;
+  font-size: clamp(2rem, 4vw, 3rem); font-weight: normal;
+  color: var(--white); line-height: 1.05;
+  margin-bottom: 1.2rem; position: relative;
+}
+.cta-left p {
+  font-size: 1rem; color: rgba(255,255,255,0.7);
+  line-height: 1.7; margin-bottom: 0.8rem; position: relative;
+}
+.cta-left em { font-size: 0.85rem; color: rgba(255,255,255,0.4); position: relative; }
+.cta-right { padding: 6rem 4rem; display: flex; flex-direction: column; justify-content: center; }
+.cta-right h3 {
+  font-family: 'TanHeadline', 'Didot', 'Bodoni MT', 'Playfair Display', Georgia, serif;
+  font-size: 1.8rem; font-weight: normal;
+  color: var(--black); margin-bottom: 2rem;
+}
+.contact-links { display: flex; flex-direction: column; gap: 0.85rem; margin-bottom: 2.5rem; }
+.contact-link {
+  display: flex; align-items: center; gap: 1rem;
+  text-decoration: none; padding: 1rem 1.2rem;
+  background: var(--off-white); transition: all 0.2s; color: var(--text);
+}
+.contact-link:hover { background: var(--red); color: var(--white); transform: translateX(5px); }
+.contact-link-icon {
+  width: 36px; height: 36px; background: var(--red); border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1rem; flex-shrink: 0; transition: background 0.2s;
+}
+.contact-link:hover .contact-link-icon { background: rgba(255,255,255,0.2); }
+.contact-link span { font-size: 0.9rem; font-family: 'Work Sans', sans-serif; }
+.next-steps { background: var(--off-white); padding: 1.5rem; }
+.next-steps h4 {
+  font-family: 'TanHeadline', 'Didot', 'Bodoni MT', 'Playfair Display', Georgia, serif;
+  font-size: 0.95rem; color: var(--red); font-weight: normal; margin-bottom: 0.8rem;
+}
+.next-steps ol { padding-left: 1.2rem; display: flex; flex-direction: column; gap: 0.45rem; }
+.next-steps ol li { font-size: 0.88rem; color: #444; font-family: 'Work Sans', sans-serif; }
+
+/* ── SCROLL REVEAL ── */
+.reveal {
+  opacity: 0; transform: translateY(24px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.reveal.visible { opacity: 1; transform: translateY(0); }
+.reveal-d1 { transition-delay: 0.1s; }
+.reveal-d2 { transition-delay: 0.2s; }
+.reveal-d3 { transition-delay: 0.3s; }
+.reveal-d4 { transition-delay: 0.4s; }
+
+/* ══════════════════════════════════════════
+   RESPONSIVE — TABLET ≤1024px
+══════════════════════════════════════════ */
+@media (max-width: 1024px) {
+  .hero-left  { padding: 4rem 3rem 3rem; }
+  .hero-right { padding: 4rem 3rem 3rem; }
+  #about { padding: 5rem 3rem; gap: 3rem; }
+  #audience, #why, #formats, #handles, #venues,
+  #proof, #marketing, #models, #success { padding: 5rem 3rem; }
+  .cta-left, .cta-right { padding: 5rem 3rem; }
+  .stats-row { grid-template-columns: repeat(2, 1fr); }
+  .models-grid { grid-template-columns: 1fr 1fr; }
+  .model-card:last-child { grid-column: 1 / -1; max-width: 50%; margin: 0 auto; width: 100%; }
+}
+
+/* ══════════════════════════════════════════
+   RESPONSIVE — MOBILE ≤768px
+══════════════════════════════════════════ */
+@media (max-width: 768px) {
+  /* Hero stacks */
+  .hero { grid-template-columns: 1fr; min-height: auto; }
+  .hero-left { padding: 3.5rem 1.5rem 2.5rem; }
+  .hero-title { font-size: clamp(3rem, 12vw, 4.5rem); }
+  .hero-right { padding: 2.5rem 1.5rem 3rem; gap: 1.5rem; }
+  .tiles-cluster { grid-template-columns: repeat(3, 72px); gap: 8px; }
+  .tile { width: 72px; height: 72px; font-size: 2.1rem; }
+  .tile:nth-child(4) { width: 152px; }
+  .nav-pills { gap: 0.4rem; }
+  .pill { font-size: 0.68rem; padding: 0.45rem 0.9rem; }
+  .hero-tagline { font-size: 1.1rem; }
+
+  /* Sections */
+  #about { grid-template-columns: 1fr; padding: 4rem 1.5rem; gap: 2.5rem; }
+  #audience, #why, #formats, #handles, #venues,
+  #proof, #marketing, #models, #success { padding: 4rem 1.5rem; }
+  .audience-grid, .why-grid, .handles-grid,
+  .venues-grid, .marketing-grid { grid-template-columns: 1fr; }
+  .models-grid { grid-template-columns: 1fr; }
+  .model-card:last-child { grid-column: auto; max-width: 100%; }
+  .stats-row { grid-template-columns: repeat(2, 1fr); gap: 0.75rem; }
+  .stat-num { font-size: 2.4rem; }
+  .partners-grid { grid-template-columns: 1fr; }
+  .pillars { grid-template-columns: 1fr 1fr; }
+  .section-title { font-size: clamp(1.7rem, 7vw, 2.5rem); }
+  .format-row { flex-wrap: wrap; gap: 0.8rem; padding: 1.2rem 0.75rem; }
+  .format-tag { margin-top: 0; }
+
+  /* CTA */
+  #contact { grid-template-columns: 1fr; }
+  .cta-left { padding: 4rem 1.5rem; }
+  .cta-right { padding: 3.5rem 1.5rem; }
+  .cta-left h2 { font-size: clamp(1.8rem, 8vw, 2.8rem); }
+  .cta-right h3 { font-size: 1.5rem; margin-bottom: 1.5rem; }
+}
+
+/* ══════════════════════════════════════════
+   RESPONSIVE — SMALL MOBILE ≤420px
+══════════════════════════════════════════ */
+@media (max-width: 420px) {
+  .hero-left { padding: 3rem 1.2rem 2rem; }
+  .hero-right { padding: 2rem 1.2rem 2.5rem; }
+  .hero-title { font-size: clamp(2.6rem, 14vw, 3.5rem); }
+  .tiles-cluster { grid-template-columns: repeat(3, 62px); gap: 6px; }
+  .tile { width: 62px; height: 62px; font-size: 1.8rem; border-radius: 8px; }
+  .tile:nth-child(4) { width: 130px; }
+  #about, #audience, #why, #formats, #handles, #venues,
+  #proof, #marketing, #models, #success { padding: 3rem 1.2rem; }
+  .cta-left { padding: 3rem 1.2rem; }
+  .cta-right { padding: 3rem 1.2rem; }
+  .stats-row { gap: 0.5rem; }
+  .stat-box { padding: 1.4rem 0.8rem; }
+  .stat-num { font-size: 2rem; }
+  .btn { padding: 0.65rem 1.1rem; font-size: 0.75rem; }
+  .pillars { grid-template-columns: 1fr 1fr; }
+  .pillar { padding: 1.3rem 0.8rem; }
+}
+</style>
+</head>
+<body>
+
+<!-- ══ HERO ══ -->
+<section class="hero">
+  <div class="hero-left">
+    <div class="hero-deco-1"></div>
+    <div class="hero-deco-2"></div>
+    <div class="hero-eyebrow">venue partnership proposal</div>
+    <h1 class="hero-title">lucky<br>tiles</h1>
+    <p class="hero-sub">social club ✨</p>
+    <p class="hero-jp">いい牌</p>
+    <div class="hero-rule"></div>
+    <p class="hero-proposal">long-term collaboration for bars,<br>restaurants & social spaces</p>
+    <p class="hero-cities">est. 2024 · sydney · melbourne · auckland</p>
+  </div>
+  <div class="hero-right">
+    <!-- Navigation pills replacing the nav bar -->
+    <div class="nav-pills">
+      <a href="#about"     class="pill">about us</a>
+      <a href="#why"       class="pill">why mahjong</a>
+      <a href="#formats"   class="pill">events</a>
+      <a href="#proof"     class="pill">our venues</a>
+      <a href="#models"    class="pill">partnership</a>
+      <a href="#contact"   class="pill pill-cta">get in touch ✨</a>
+    </div>
+    <div class="tiles-cluster">
+      <div class="tile">中</div>
+      <div class="tile">發</div>
+      <div class="tile">白</div>
+      <div class="tile">竹</div>
+    </div>
+    <p class="hero-tagline">mahjong socials that<br>bring people together.</p>
+    <div class="hero-cta-row">
+      <a href="#contact"                              class="btn btn-red">partner with us</a>
+      <a href="https://www.instagram.com/luckytiles" target="_blank" class="btn btn-outline-dark">@luckytiles</a>
+    </div>
+  </div>
+</section>
+
+<!-- ══ ABOUT ══ -->
+<section id="about">
+  <div class="about-text">
+    <div class="label label-red reveal">about us</div>
+    <h2 class="section-title reveal">about<br>lucky tiles</h2>
+    <p class="reveal">lucky tiles is a modern mahjong social club creating casual, welcoming events for young adults across major cities. our sessions feel approachable, stylish, and low-pressure — whether someone is completely new to mahjong or already obsessed.</p>
+    <p class="reveal">we bring together people over a shared game — and through that, we're building something bigger: a genuine cross-cultural community where connection happens naturally.</p>
+    <div class="about-motto reveal">" no money, just good vibes ✨ "</div>
+  </div>
+  <div class="pillars reveal">
+    <div class="pillar"><div class="pillar-icon">🀄</div><div class="pillar-label">mahjong culture</div></div>
+    <div class="pillar"><div class="pillar-icon">🍻</div><div class="pillar-label">food & drink culture</div></div>
+    <div class="pillar"><div class="pillar-icon">📅</div><div class="pillar-label">community events</div></div>
+    <div class="pillar"><div class="pillar-icon">❤️</div><div class="pillar-label">social connection</div></div>
+  </div>
+</section>
+
+<!-- ══ AUDIENCE ══ -->
+<section id="audience">
+  <div class="label label-white reveal">our audience</div>
+  <h2 class="section-title white reveal">who comes to lucky tiles?</h2>
+  <p class="section-sub white reveal">the customers we bring to your venue</p>
+  <div class="audience-grid">
+    <div class="audience-card reveal reveal-d1">
+      <div class="audience-icon">👥</div>
+      <div>
+        <h3>age 25–35</h3>
+        <p>young professionals & creatives who value quality experiences over quantity</p>
+      </div>
+    </div>
+    <div class="audience-card reveal reveal-d2">
+      <div class="audience-icon">📍</div>
+      <div>
+        <h3>urban dwellers</h3>
+        <p>city-based residents across sydney, melbourne & auckland — active, social, always discovering their next local haunt</p>
+      </div>
+    </div>
+    <div class="audience-card reveal reveal-d3">
+      <div class="audience-icon">🍺</div>
+      <div>
+        <h3>social diners</h3>
+        <p>love bars, cafés, restaurants & social spaces — come for the vibe, stay for the experience</p>
+      </div>
+    </div>
+    <div class="audience-card reveal reveal-d4">
+      <div class="audience-icon">❤️</div>
+      <div>
+        <h3>culture curious</h3>
+        <p>drawn to mahjong, games & asian food culture — genuinely engaged, not just passing through</p>
+      </div>
+    </div>
+  </div>
+  <p class="audience-note reveal">our attendees stay for drinks & food before and after games · share content organically on instagram & tiktok · return regularly</p>
+</section>
+
+<!-- ══ WHY MAHJONG ══ -->
+<section id="why">
+  <div class="label label-red reveal">the opportunity</div>
+  <h2 class="section-title reveal">why mahjong<br>works for venues</h2>
+  <p class="section-sub reveal">unlike loud nightlife or one-off events, mahjong creates a warm, conversational atmosphere that complements bars, restaurants, cat cafés, sports clubs, and any social space.</p>
+  <div class="why-grid">
+    <div class="why-card reveal reveal-d1">
+      <span class="why-card-icon">⏱</span>
+      <h3>longer dwell time & more orders</h3>
+      <p>mahjong sessions run 2–3 hours naturally — players settle in, order multiple rounds of food and drinks, and stay far longer than a typical visit.</p>
+    </div>
+    <div class="why-card reveal reveal-d2">
+      <span class="why-card-icon">👥</span>
+      <h3>group bookings & repeat visits</h3>
+      <p>players come in groups of 4, filling tables efficiently. regulars come back every session and often revisit your venue outside of event nights.</p>
+    </div>
+    <div class="why-card reveal reveal-d3">
+      <span class="why-card-icon">🍻</span>
+      <h3>real F&B revenue</h3>
+      <p>a social game pairs naturally with eating and drinking. our events consistently drive food and beverage spending throughout the entire session.</p>
+    </div>
+    <div class="why-card reveal reveal-d4">
+      <span class="why-card-icon">📸</span>
+      <h3>organic reach & community buzz</h3>
+      <p>players photograph and share the experience on instagram and tiktok. every event generates free content and word-of-mouth for your venue.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══ HANDLES EVERYTHING ══ -->
+<section id="handles">
+  <div class="label label-white reveal">operations</div>
+  <h2 class="section-title white reveal">we handle everything.</h2>
+  <p class="section-sub white reveal">venues simply provide the space and hospitality — we take care of the rest.</p>
+  <div class="handles-grid">
+    <div class="handles-panel reveal">
+      <h3>lucky tiles handles</h3>
+      <ul class="handles-list">
+        <li>event planning & operations</li>
+        <li>mahjong tables & equipment</li>
+        <li>ticketing & guest management</li>
+        <li>marketing & promotion</li>
+        <li>photography & social content</li>
+        <li>event hosts & player support</li>
+      </ul>
+    </div>
+    <div class="handles-panel venue-panel reveal">
+      <h3>venue provides</h3>
+      <ul class="handles-list">
+        <li>your space & tables</li>
+        <li>food & drink service</li>
+        <li>your hospitality experience</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ══ EVENT FORMATS ══ -->
+<section id="formats">
+  <div class="label label-red reveal">event formats</div>
+  <h2 class="section-title reveal">what we run</h2>
+  <p class="section-sub reveal">flexible formats to suit your venue's vibe and capacity</p>
+  <div class="format-list">
+    <div class="format-row reveal">
+      <div class="format-icon">😊</div>
+      <div class="format-content">
+        <h3>casual social night</h3>
+        <p>our most popular format — relaxed recurring sessions where everyone plays, chats, and stays for a drink after.</p>
+      </div>
+      <div class="format-tag">most popular</div>
+    </div>
+    <div class="format-row reveal">
+      <div class="format-icon">👥</div>
+      <div class="format-content">
+        <h3>beginner sessions</h3>
+        <p>intro events for new players. high energy, welcoming, and a great draw for first-timers who become regulars.</p>
+      </div>
+      <div class="format-tag">great for new audiences</div>
+    </div>
+    <div class="format-row reveal">
+      <div class="format-icon">🍹</div>
+      <div class="format-content">
+        <h3>mahjong & cocktails</h3>
+        <p>mahjong paired with curated drink specials or themed menus. a natural upsell opportunity for venues.</p>
+      </div>
+      <div class="format-tag">high F&B spend</div>
+    </div>
+    <div class="format-row reveal">
+      <div class="format-icon">🏆</div>
+      <div class="format-content">
+        <h3>tournament nights</h3>
+        <p>competitive but social-format tournaments with prizes. creates buzz and drives higher ticket demand.</p>
+      </div>
+      <div class="format-tag">sellout events</div>
+    </div>
+    <div class="format-row reveal">
+      <div class="format-icon">🎎</div>
+      <div class="format-content">
+        <h3>cultural collaborations</h3>
+        <p>special events tied to food, art, or cultural moments — Lunar New Year, community milestones, themed nights.</p>
+      </div>
+      <div class="format-tag">content-rich</div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ IDEAL VENUES ══ -->
+<section id="venues">
+  <div class="label label-white reveal">ideal partners</div>
+  <h2 class="section-title white reveal">what we look for<br>in a venue</h2>
+  <p class="section-sub white reveal">if this sounds like your space, we'd love to talk.</p>
+  <div class="venues-grid">
+    <div class="venues-panel venues-left reveal">
+      <div class="venues-panel-title">venue essentials</div>
+      <ul class="venue-check-list">
+        <li><span class="chk">✓</span> warm, social atmosphere</li>
+        <li><span class="chk">✓</span> strong food & drink offerings</li>
+        <li><span class="chk">✓</span> tables suitable for groups of 4</li>
+        <li><span class="chk">✓</span> capacity for 15–50 guests</li>
+        <li><span class="chk">✓</span> weeknight or off-peak availability</li>
+        <li><span class="chk">✓</span> interest in community-driven events</li>
+      </ul>
+    </div>
+    <div class="venues-panel venues-right reveal">
+      <div class="venues-panel-title">we especially love</div>
+      <ul class="venue-type-list">
+        <li>cocktail & wine bars</li>
+        <li>cafés & dessert shops</li>
+        <li>restaurants</li>
+        <li>cat cafés & lifestyle spaces</li>
+        <li>pickleball & sports clubs</li>
+        <li>creative & cultural venues</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ══ SOCIAL PROOF ══ -->
+<section id="proof">
+  <div class="label label-red reveal">social proof</div>
+  <h2 class="section-title reveal">the numbers speak<br>for themselves</h2>
+  <p class="section-sub reveal">monthly averages across march – may 2026</p>
+  <div class="stats-row">
+    <div class="stat-box highlight reveal reveal-d1"><div class="stat-num">142</div><div class="stat-label">tickets sold / month</div></div>
+    <div class="stat-box reveal reveal-d2"><div class="stat-num">11</div><div class="stat-label">events / month</div></div>
+    <div class="stat-box reveal reveal-d3"><div class="stat-num">3</div><div class="stat-label">sellouts / month<br><span style="font-size:0.72rem;font-weight:500;color:var(--text-muted);display:block;margin-top:0.25rem">up to 40 capacity</span></div></div>
+    <div class="stat-box reveal reveal-d4"><div class="stat-num">8</div><div class="stat-label">active venues</div></div>
+  </div>
+  <p class="partners-title reveal">our current venue partners</p>
+  <div class="partners-grid">
+    <div class="partner-item reveal reveal-d1">Ni Hao Bar & Dining · Sydney CBD</div>
+    <div class="partner-item reveal reveal-d2">Tea Journal · Sydney Chatswood</div>
+    <div class="partner-item reveal reveal-d1">Talk Shop / Caption by Hyatt · Haymarket</div>
+    <div class="partner-item reveal reveal-d2">852 Hong Kong Restaurant · Newtown</div>
+    <div class="partner-item reveal reveal-d1">Miss Mahjong's Bar · Sydney Burwood</div>
+    <div class="partner-item reveal reveal-d2">The Collectivist · Melbourne Ascot Vale</div>
+    <div class="partner-item reveal reveal-d1">Grownup Donuts · Auckland Ponsonby</div>
+    <div class="partner-item reveal reveal-d2">Cha & Zak's Clubhouse · Sydney Marrickville <span style="font-size:0.72rem;color:var(--red);font-weight:600;margin-left:0.4rem;background:var(--light-red);padding:0.15rem 0.5rem;border-radius:100px;">new · june 2026</span></div>
+  </div>
+  <p class="proof-note reveal">haymarket & sydney CBD events consistently sell out within days · burwood reached 30 tickets in may 2026 ✨</p>
+</section>
+
+<!-- ══ MARKETING ══ -->
+<section id="marketing">
+  <div class="label label-white reveal">marketing</div>
+  <h2 class="section-title white reveal">we promote every<br>collaboration</h2>
+  <p class="section-sub white reveal">every venue we partner with gets promoted across our community — authentically, not just as a tag.</p>
+  <div class="marketing-grid">
+    <div class="marketing-card reveal reveal-d1">
+      <div class="marketing-icon">📸</div>
+      <div><h3>instagram posts & reels</h3><p>venue-tagged posts for every event, reaching our growing community feed</p></div>
+    </div>
+    <div class="marketing-card reveal reveal-d2">
+      <div class="marketing-icon">📱</div>
+      <div><h3>story promotions</h3><p>event build-up, behind-the-scenes & live stories from every session</p></div>
+    </div>
+    <div class="marketing-card reveal reveal-d3">
+      <div class="marketing-icon">📅</div>
+      <div><h3>event calendars</h3><p>listed on our public event pages and community group chats</p></div>
+    </div>
+    <div class="marketing-card reveal reveal-d4">
+      <div class="marketing-icon">👥</div>
+      <div><h3>community word-of-mouth</h3><p>our regulars are vocal advocates — they bring new people to every session</p></div>
+    </div>
+    <div class="marketing-card reveal reveal-d1">
+      <div class="marketing-icon">❤️</div>
+      <div><h3>collaborative venue content</h3><p>we work with venues to create co-branded content that benefits both brands</p></div>
+    </div>
+    <div class="marketing-card reveal reveal-d2">
+      <div class="marketing-icon">🔊</div>
+      <div><h3>cross-city reach</h3><p>announcements across our sydney, melbourne & auckland communities</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ PARTNERSHIP MODELS ══ -->
+<section id="models">
+  <div class="label label-red reveal">partnership models</div>
+  <h2 class="section-title reveal">flexible structures<br>to suit your venue</h2>
+  <p class="section-sub reveal">we're open to structuring collaborations in ways that work best for you.</p>
+  <div class="models-grid">
+    <div class="model-card reveal reveal-d1">
+      <div class="model-tag">starter</div>
+      <div class="model-body">
+        <h3>free collaboration</h3>
+        <ul class="model-list">
+          <li>no upfront cost to venue</li>
+          <li>minimum spend encouraged for your F&B</li>
+          <li>great way to trial the partnership</li>
+          <li>we handle all promotion & operations</li>
+        </ul>
+      </div>
+    </div>
+    <div class="model-card featured reveal reveal-d2">
+      <div class="model-tag">recommended ✨</div>
+      <div class="model-body">
+        <h3>regular residency</h3>
+        <ul class="model-list">
+          <li>fixed recurring slot (monthly/bi-weekly)</li>
+          <li>reserved section in your venue</li>
+          <li>co-branded social promotion</li>
+          <li>early access as we expand to new cities</li>
+        </ul>
+      </div>
+    </div>
+    <div class="model-card reveal reveal-d3">
+      <div class="model-tag">premium</div>
+      <div class="model-body">
+        <h3>signature partnership</h3>
+        <ul class="model-list">
+          <li>exclusive long-term agreement</li>
+          <li>lucky tiles 'home venue' status</li>
+          <li>co-created themed events & menus</li>
+          <li>featured across all lucky tiles comms</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ SUCCESS ══ -->
+<section id="success">
+  <div class="label label-white reveal">the vision</div>
+  <h2 class="section-title white reveal">what success<br>looks like</h2>
+  <p class="section-sub white reveal">we're looking to build lasting partnerships, not one-off activations.</p>
+  <div class="steps">
+    <div class="step reveal reveal-d1">
+      <div class="step-num">01</div>
+      <div><h3>trial event</h3><p>one session to test the format at your venue — low commitment, high insight</p></div>
+    </div>
+    <div class="step reveal reveal-d2">
+      <div class="step-num">02</div>
+      <div><h3>monthly residency</h3><p>regular recurring events that become part of your venue's culture and calendar</p></div>
+    </div>
+    <div class="step reveal reveal-d3">
+      <div class="step-num">03</div>
+      <div><h3>community hub status</h3><p>your venue becomes the go-to space for lucky tiles — known and loved by our players</p></div>
+    </div>
+    <div class="step reveal reveal-d4">
+      <div class="step-num">04</div>
+      <div><h3>co-created experiences</h3><p>themed events, special menus, joint campaigns, and collaborations that grow both brands</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ CONTACT ══ -->
+<section id="contact">
+  <div class="cta-left">
+    <div class="cta-deco-1"></div>
+    <div class="cta-deco-2"></div>
+    <h2>let's build<br>something<br>together ✨</h2>
+    <p>we'd love to explore how lucky tiles can bring new energy and a loyal community into your venue.</p>
+    <em>いい牌 — good tiles, good times</em>
+  </div>
+  <div class="cta-right">
+    <h3>get in touch</h3>
+    <div class="contact-links">
+      <a href="mailto:luckytilesocialclub@gmail.com" class="contact-link">
+        <div class="contact-link-icon">✉️</div>
+        <span>luckytilesocialclub@gmail.com</span>
+      </a>
+      <a href="https://www.instagram.com/luckytiles" target="_blank" class="contact-link">
+        <div class="contact-link-icon">📸</div>
+        <span>@luckytiles</span>
+      </a>
+      <a href="https://luckytilesocialclub.com" target="_blank" class="contact-link">
+        <div class="contact-link-icon">🌐</div>
+        <span>luckytilesocialclub.com</span>
+      </a>
+      <a href="https://www.humanitix.com/au/lucky-tiles" target="_blank" class="contact-link">
+        <div class="contact-link-icon">🎟️</div>
+        <span>view our upcoming events</span>
+      </a>
+    </div>
+    <div class="next-steps">
+      <h4>next steps</h4>
+      <ol>
+        <li>reach out via email or DM</li>
+        <li>quick 20-min intro chat</li>
+        <li>trial event at your venue ✨</li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<script>
+  // Scroll reveal
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.1, rootMargin: '0px 0px -30px 0px' });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  // Animated stat counters
+  function animateCount(el, target, duration = 1100) {
+    let start = null;
+    const step = (ts) => {
+      if (!start) start = ts;
+      const prog = Math.min((ts - start) / duration, 1);
+      const ease = 1 - Math.pow(1 - prog, 3);
+      el.textContent = Math.floor(ease * target);
+      if (prog < 1) requestAnimationFrame(step);
+      else el.textContent = target;
+    };
+    requestAnimationFrame(step);
+  }
+  const statsObserver = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        const data = [142, 11, 3, 8];
+        e.target.querySelectorAll('.stat-num').forEach((el, i) => animateCount(el, data[i]));
+        statsObserver.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.3 });
+  const statsRow = document.querySelector('.stats-row');
+  if (statsRow) statsObserver.observe(statsRow);
+</script>
+</body>
+</html>
